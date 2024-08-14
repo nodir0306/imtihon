@@ -32,7 +32,7 @@ server.use(orederItemRoutes);
 server.use(contractRoutes);
 server.use(paymentRoutes);
 server.use(findProductsRoutes)
-server.get('/overdue-payments', async (req, res) => {
+server.get('/overduePayments', async (req, res) => {
     try {
         const overduePayments = await writePostSql(`
             SELECT 
@@ -56,14 +56,14 @@ server.get('/overdue-payments', async (req, res) => {
         });
     } catch (error) {
         res.status(500).send({
-            message: "Error with overdue payments.",
+            message: "erorrrrrrrrrrrrrrrrrr",
             error: error.message
         });
     }
 });
 
 
-server.get('/overdue-contract', async (req, res) => {
+server.get('/overdueContract', async (req, res) => {
     try {
         const overduePayments = await writePostSql('SELECT * FROM overdue_payments');
         res.send({
@@ -72,7 +72,7 @@ server.get('/overdue-contract', async (req, res) => {
         });
     } catch (error) {
         res.status(500).send({
-            message: "Error retrieving overdue payments",
+            message: "errrrrrrrrrrrrrrrrrrrrrrrrrrrr",
             error: error.message
         });
     }

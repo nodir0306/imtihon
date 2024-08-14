@@ -16,6 +16,7 @@ export async function findAllProducts(req, res) {
                 product
             LEFT JOIN 
                 category ON product.category_id = category.id
+                
         `;
       
         if (searchTerm) {
