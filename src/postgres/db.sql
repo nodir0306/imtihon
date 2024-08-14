@@ -81,7 +81,7 @@ CREATE TABLE contract_type (
 );
 
 
-CREATE TYPE payment_enum AS ENUM ('5', '10', '15');
+CREATE TYPE payment_enum AS ENUM (5, 10, 15);
 CREATE TYPE contract_status_enum AS ENUM ('finished', 'notFinished');
 
 CREATE TABLE contracts (
@@ -92,6 +92,7 @@ CREATE TABLE contracts (
     monthly_payment payment_enum,
     contract_status contract_status_enum,
     starting_payment_percent INT,
+    
     total_payment BIGINT,
     FOREIGN KEY (order_id) REFERENCES orders(id),
     FOREIGN KEY (customer_id) REFERENCES customer(id),

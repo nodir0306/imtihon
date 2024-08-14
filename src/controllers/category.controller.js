@@ -36,7 +36,27 @@ export async function getAllCategory(req, res) {
     try {
          
 
-            const categoryNAme = await writePostSql("SELECT * FROM category");
+            const categoryNAme = await writePostSql(`
+    SELECT 
+        c.id AS category_id,
+        c.name AS category_name,
+        c.image_url AS category_image_url,
+        json_agg(
+            json_build_object(
+                'id', p.id,
+                'name', p.name,
+                'price', p.price,
+                'quantity', p.quantity,
+                'image_url', p.image_url
+            )
+        ) AS products
+    FROM 
+        category c
+    LEFT JOIN 
+        product p ON c.id = p.category_id
+    GROUP BY 
+        c.id, c.name, c.image_url;
+`);
 
             res.status(200).send({
                 message: 'ok',

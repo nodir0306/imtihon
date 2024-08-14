@@ -5,20 +5,19 @@ export async function findAllProducts(req, res) {
 
         let query = `
             SELECT 
-                product.id, 
-                product.name, 
-                product.price, 
-                product.quantity, 
+                product.id,
+                product.name,
+                product.price,
+                product.quantity,
                 product.category_id, 
-                product.image_url, 
+                product.image_url,
                 category.name AS category_name
             FROM 
                 product
             LEFT JOIN 
                 category ON product.category_id = category.id
         `;
-
-
+      
         if (searchTerm) {
             query += ` WHERE product.name ILIKE '%${searchTerm}%'`;
         }
